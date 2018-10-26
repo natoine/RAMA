@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>football</title>
+</head>
+
+<script>
+       
+    
+
+
+        var result
+        fetch('http://soccer.sportsopendata.net/v1/leagues/premier-league/seasons/16-17/rounds?team_identifier=qtjxv9d71ntirsgpjbmeefda4gewdnd9').then(
+        function(response){
+        response.json().then(function(data){
+            result = data
+            console.log(result)
+        })
+            
+        })
+        
+   
+</script>
+    
+<body>
+</body>
+
+</html>
