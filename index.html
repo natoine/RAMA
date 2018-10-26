@@ -1,16 +1,139 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-     <title>ProjetWeb</title>
-     <meta charset="utf-8">
-  </head>
-  <body>
-     
+
+<head>
+    <meta charset="utf-8">
+    <title>football</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>  
+</head>
+
+<body>
+  <div class="container">
+      <p style="text-align:center;margin-top: 30px;">Information des toutes les 20 équipes de la saison 2016-2017 </p>
+    <div class="row">
+         
+         <div id="contenu" class="col-xs-12 col-md-12 col-lg-12">
+         
+         </div>
+    </div>    
+  </div> 
+ 
     
-      
+
+<script>
+        var result
+        fetch('http://soccer.sportsopendata.net/v1/leagues/premier-league/seasons/16-17/teams?fbclid=IwAR0ldf9_djm3RBhROkYPL007776NDLvMXkUEfPbstpB0wIFtkjBN9Knjrd0').then(
+        function(response){
+        response.json().then(function(donne){
+            result = donne
+            console.log(result)
+            
+            var contenu = document.getElementById("contenu")
+            
+            teams = result.data.teams
+            console.log(teams.length)
+            concatenation = ""
+            concatenation = concatenation + "<table class='table' > "
+            concatenation = concatenation + "<thead style ='color:red'> "
+            concatenation = concatenation + "<tr> "
+            
+            concatenation = concatenation + "<td>"
+            concatenation = concatenation + "Equipe"
+            concatenation = concatenation + "</td>"
+            
+            concatenation = concatenation + "<td>"
+            concatenation = concatenation + "Date Fondation de l'equipe"
+            concatenation = concatenation + "</td>"
+            
+            concatenation = concatenation + "<td>"
+            concatenation = concatenation + "Site Web"
+            concatenation = concatenation + "</td>"
+            
+            concatenation = concatenation + "<td>"
+            concatenation = concatenation + "Slug de l'équipe"
+            concatenation = concatenation + "</td>"
+            
+            concatenation = concatenation + "</tr>"
+            concatenation = concatenation + "</thead> "
+            concatenation = concatenation + "<tbody style ='color:green'> "
+            
+            for (i=0;i< teams.length; i++)
+            {
+               //console.log(i)
+               
+               
+               concatenation = concatenation + "<tr> " 
+               concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + teams[i].name
+                concatenation = concatenation + "</td> " 
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + teams[i].team_foundation
+                concatenation = concatenation + "</td> " 
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + teams[i].team_website
+                concatenation = concatenation + "</td> " 
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + teams[i].team_slug
+                concatenation = concatenation + "</td> " 
+                
+               concatenation = concatenation + "</tr> "
+                
+                 
+                
+            }
+            concatenation = concatenation + "</tbody> "
+            concatenation = concatenation + "</table> "
+            contenu.innerHTML = concatenation
+         
+            
+            })
+            
+        })
+    
+    //https://rapidapi.com/sportsop/api/Soccer%20-%20Sports%20Open%20Data/docs
+     var soccer
+        fetch(' http://soccer.sportsopendata.net/v1/leagues/serie-a/seasons/16-17/rounds?team_identifier=a9ef824ba73b0a57e982df21467c3efc').then(
+        function(response){
+        response.json().then(function(donne){
+            soccer = donne
+            console.log(soccer)
+            
           
-      <p>bonjour</p>
-      
-    </body>
+        
+         
+            
+            })
+            
+        })
+    
+    
+    var soccert
+        fetch(' http://soccer.sportsopendata.net/v1/leagues/serie-a/seasons/16-17/rounds?team_identifier=a9ef824ba73b0a57e982df21467c3efc').then(
+        function(response){
+        response.json().then(function(donne){
+            soccert = donne
+            console.log(soccert)
+            
+          
+        
+         
+            
+            })
+            
+        })
+    
+
+
+ 
+</script>
+    
+</body>
+
 </html>
