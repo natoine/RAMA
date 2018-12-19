@@ -1,76 +1,44 @@
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <title>football</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>  
-</head>
 
-<body>
-  <div class="container">
-      <p style="text-align:center;margin-top: 30px;">Information des toutes les 20 équipes de la saison 2016-2017 </p>
-    <div class="row">
+
+for (i=0;i< result.length; i++)
+            {
+               
+               
+               concatenation = concatenation + "<tr> " 
+               concatenation = concatenation + "<td> " 
+                concatenation = concatenation + "<a href='#' class='' >" + result[i].name + "</a>"
+                concatenation = concatenation + "</td> " 
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + result[i].capital
+                concatenation = concatenation + "</td> " 
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation +'<a href="information.html?id ='+result[i].name+' && idE='+result[i].capital+'>Metéo' +result[i].capital+'</a>'
+                
+                concatenation = concatenation + "</td> " 
+                
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + result[i].population
+                concatenation = concatenation + "</td> " 
+                
+                concatenation = concatenation + "<td> " 
+                concatenation = concatenation + " " + result[i].subregion
+                concatenation = concatenation + "</td> " 
+                
+               concatenation = concatenation + "</tr> "
+                
+                 
+                
+            }
+            concatenation = concatenation + "</tbody> "
+            concatenation = concatenation + "</table> "
+            contenu.innerHTML = concatenation
          
-         <div id="contenu" class="col-xs-12 col-md-12 col-lg-12">
-         
-         </div>
-    </div>    
-  </div> 
- 
-    
-
-<script>
-    //----------------------------------------------------debut parti rania------------------------------------------------------
-         var result
-        fetch('https://restcountries.eu/rest/v2/region/europe').then(
-        function(response){
-        response.json().then(function(donne){
-            result = donne
-           //console.log(result)
-    
-            var contenu = document.getElementById("contenu")
-            concatenation = ""
-            concatenation = concatenation + "<table class='table' > "
-            concatenation = concatenation + "<thead style ='color:red'> "
-            concatenation = concatenation + "<tr> "
+             
+            })
+           
             
-            concatenation = concatenation + "<td>"
-            concatenation = concatenation + "Pays"
-            concatenation = concatenation + "</td>"
-            
-            concatenation = concatenation + "<td>"
-            concatenation = concatenation + "Capital"
-            concatenation = concatenation + "</td>"
-            
-            concatenation = concatenation + "<td>"
-            concatenation = concatenation + "Détails Metéo"
-            concatenation = concatenation + "</td>"
-            
-            concatenation = concatenation + "<td>"
-            concatenation = concatenation + "Population de la capital"
-            concatenation = concatenation + "</td>"
-            
-            concatenation = concatenation + "<td>"
-            concatenation = concatenation + "Zone Géographique"
-            concatenation = concatenation + "</td>"
-            
-            concatenation = concatenation + "</tr>"
-            concatenation = concatenation + "</thead> "
-            concatenation = concatenation + "<tbody style ='color:green'> "
-            
-            
-            //result = result.data.rounds
-         //----------------------------------------------------fin parti Rania-----------------------------------------------------------
- 
-
- 
-    
-</script>
-    
-</body>
-
-</html>
+        })
