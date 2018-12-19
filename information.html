@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>football</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>  
+</head>
+
+<body>
+  <div class="container">
+      
+    <div class="row">
+         
+         <div id="contenu" class="col-xs-12 col-md-12 col-lg-12" >
+                <div id="meteo">
+                    
+                </div>
+             
+                    
+                    
+               
+         </div>
+        
+    </div> 
+      
+  </div> 
+<script>
+      //------------------------------------------partie aicha------------------------------------------------------------------------------
+        var pays = "France"
+        var ville = "Paris"
+        var result
+        fetch('http://api.wunderground.com/api/50a65432f17cf542/conditions/q/'+pays+'/'+ville+'.json').then(
+        function(response){
+        response.json().then(function(donne){
+            meteo = donne
+            var meteo = donne;
+            var weather = meteo.current_observation.temp_c;
+            var humidite = meteo.current_observation.relative_humidity;
+            var image = meteo.current_observation.icon_url;
+            
+            var div = document.createElement("div");
+            div.textContent = "La temperature actuelle dans Montpellier est de " + weather + "°C et l'humidité est de " + humidite;
+            var divImage = document.createElement("img");
+            divImage.src = image;
+            var divMeteo = document.getElementById("meteo");
+            divMeteo.appendChild(div);
+            divMeteo.appendChild(divImage);
+            
+            })
+           
+            
+        })
+    //-----------------------------------fin partie aicha-----------------------------------------------------------------------------------
+</script>
+    
+</body>
+
+</html>
