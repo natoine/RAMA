@@ -8,121 +8,52 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>  
-    <style>
-        
-        span{
-            color: #40A457;
-            font-family: fantasy;
-            
-        }
-        h1{
-            font-family: cursive;
-            text-align: center;
-            text-decoration: underline;
-        }
-        p{
-            text-align: center;
-            font-size: 30px;
-        }
-    
-    </style>
 </head>
 
 <body>
   <div class="container">
-      
+      <p style="text-align:center;margin-top: 30px;">Methéo </p>
     <div class="row">
          
-         <div class="col-xs-12 col-md-12 col-lg-12" >
-             <br>
-             <h1>La metéo:</h1>
-             <br>
-                <div id="meteo">
-                    
-                    
-                </div> 
-             <h6 id="ville"></h6>
-         </div>
-         <div class="col-xs-12 col-md-12 col-lg-12">
-             <div id="infos">
-             
-             </div>
-         
-         </div>
+         <div id="contenu" class="col-xs-12 col-md-12 col-lg-12" >
         
+         </div>
     </div> 
-      
+      <div id="meteo">
+      </div>
   </div> 
 <script>
-    
-
-//---------------------------------------------partie moustapha---------------------------------------------------------------------------
-    var pays = "Italy"
-    var ville = "Rome"
-    fetch('https://restcountries.eu/rest/v2/capital/'+ville+'').then(
-        function(response){
-        response.json().then(function(donne){
-            information = donne
-            console.log(information)
-            var ville = document.getElementById("ville")
-            vill = ""
-            vill = vill + " " + information[0].capital
-            ville.innerHTML = vill
-            ville.style.textAlign="center";
-            
-            
-            var infos = document.getElementById("infos")
-             concatenation = ""
-             concatenation = "<br>"
-            concatenation = concatenation+ "<h1>Description de la ville</h1></br>"
-             concatenation = concatenation + "<p><span> " + information[0].capital + "</span> c'est la capital de <span> " + information[0].name + "</span></p><p> "
-            concatenation = concatenation + "Elle a une superficie de <span>" + information[0].area + " kilomètre carés </span> et une population de <span> " + information[0].population + "hbt </span></p><p>"
-            
-            concatenation = concatenation + "dont la langue nionnalle est <span> " + information[0].languages[0].name + "</span> et la langue native est  " + information[0].languages[0].nativeName + " "
-            
-            concatenation = concatenation + ".</p><p><span>" + information[0].currencies[0].name + "</span> est la monaie consomée dans le pays dont le symbole est <span> " + information[0].currencies[0].symbol + "</span>.</p>"
-    
-            infos.innerHTML = concatenation
-            //console.log(information[0].capital)
-            //console.log(information[0].name)
-            //console.log(information[0].languages[0].name)
-            //console.log(information[0].languages[0].nativeName)
-           // console.log(information[0].area)
-            //console.log(information[0].population)
-            //console.log(information[0].currencies[0].name)
-            //console.log(information[0].currencies[0].symbol)
-        
-            
-            })
-           
-            
-        })
-        
-        
-    //--------------------------------------------fin partie Moustapha------------------------------------------------------------------------
-      
-      //------------------------------------------partie aicha------------------------------------------------------------------------------
-       
+    //---------------------------------------------partie amine------------------------------------------------------------------------------
+    var newURL = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
+    //alert(decodeURIComponent(newURL))
+    newURL=decodeURIComponent(newURL)
+    var startcountry= newURL.indexOf("?id =")+"?id =".length
+    var endcountry = newURL.indexOf("&& idE=")
+    var begincap = newURL.indexOf("&& idE=")+"&& idE=".length
+    var endcap = newURL.indexOf(">Metéo")
+    var paystest = newURL.substr(startcountry,endcountry-startcountry)
+    var villetest = newURL.substr(begincap,endcap-begincap)
         var result
+        var pays = paystest
+        var ville = villetest
+    //--------------------------------------------fin partie amine----------------------------------------------------------------------------
+        //------------------------------------------partie aicha------------------------------------------------------------------------------
         fetch('http://api.wunderground.com/api/50a65432f17cf542/conditions/q/'+pays+'/'+ville+'.json').then(
         function(response){
         response.json().then(function(donne){
             meteo = donne
-            console.log(meteo)
             var meteo = donne;
             var weather = meteo.current_observation.temp_c;
             var humidite = meteo.current_observation.relative_humidity;
             var image = meteo.current_observation.icon_url;
-            var heure = meteo.current_observation.local_time_rfc822;
             
             var div = document.createElement("div");
-            div.innerHTML = "<p>Nous sommes le <span>"+ heure +"</span>, La temperature actuelle dans la ville de <span> "+ ville +"</span> est <span>" + weather + "°C </span> et l'humidité est de <span>" + humidite + "</span></p>";
+            div.textContent = "La temperature actuelle est de " + weather + "°C et l'humidité est de " + humidite;
             var divImage = document.createElement("img");
             divImage.src = image;
             var divMeteo = document.getElementById("meteo");
             divMeteo.appendChild(div);
             divMeteo.appendChild(divImage);
-            divMeteo.style.textAlign="center";
             
             })
            
