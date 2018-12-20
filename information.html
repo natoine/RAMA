@@ -59,8 +59,21 @@
     
 
 //---------------------------------------------partie moustapha---------------------------------------------------------------------------
-    var pays = "Italy"
-    var ville = "Rome"
+    //croisement des deux api
+    var newURL = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
+    //alert(decodeURIComponent(newURL))
+    newURL=decodeURIComponent(newURL)
+    var startcountry= newURL.indexOf("?id =")+"?id =".length
+    var endcountry = newURL.indexOf("&& idE=")
+    var begincap = newURL.indexOf("&& idE=")+"&& idE=".length
+    var endcap = newURL.indexOf(">Metéo")
+    var paystest = newURL.substr(startcountry,endcountry-startcountry)
+    var villetest = newURL.substr(begincap,endcap-begincap)
+        var result
+        var pays = paystest
+        var ville = villetest
+    
+  //affichage des informations de la ville selectionée
     fetch('https://restcountries.eu/rest/v2/capital/'+ville+'').then(
         function(response){
         response.json().then(function(donne){
