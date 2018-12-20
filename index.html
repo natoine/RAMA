@@ -13,11 +13,21 @@
             background-color: #f2f2f2;
             font-size: 100%;
           }       
-   
+    p{ 
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-image: -webkit-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet);
+      padding: 20px;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 20px;
+      font-weight: bold;
+      font-style: italic;
 
 
 
-     
+
+     }
     h1{text-align: center;
       text-shadow: 1px 1px black;
       font-family: "Times New Roman", Times, serif;
@@ -53,6 +63,19 @@
  }
 
 
+ #date{
+  text-align: right;
+  text-shadow: 1px 1px black;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px;
+  margin-right: 30px;
+  color: rgb(100, 100, 100);
+  }
+
+
 
 </style>
 
@@ -64,11 +87,11 @@
 
   <div class="container">
       <h1>Informations pays europeens</h1>
-  
   <marquee>
         <p> Bienvenu a vous! Merci d'avoir choisi notre site. Celui ci vous permettra d'avoir une idée générale sur les pays Europeen !
         </p>
-  </marquee>
+</marquee>
+
 
     <div class="row">
          
@@ -80,14 +103,14 @@
  
     
 <script>
- 
+    //----------------------------------------------------debut rania------------------------------------------------------
 
          var result
         fetch('https://restcountries.eu/rest/v2/region/europe').then(
         function(response){
         response.json().then(function(donne){
             result = donne
-         
+           //console.log(result)
     
             var contenu = document.getElementById("contenu")
             concatenation = ""
@@ -123,7 +146,10 @@
 
             
             
-           
+            //result = result.data.rounds
+         //----------------------------------------------------fin Rania-----------------------------------------------------------
+ 
+        //----------------------------------------------------debut Amine------------------------------------------------------
  
             
             for (i=0;i< result.length; i++)
@@ -172,9 +198,24 @@
 
   
        
+    //----------------------------------------------------fin parti Amine-----------------------------------------------------
  
 
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
 
+    if(dd<10) {
+      dd = '0'+dd
+      } 
+
+    if(mm<10) {
+      mm = '0'+mm
+  } 
+
+today = mm + '/' + dd + '/' + yyyy;
+document.write("<div id=" + "date"+ ">"+today+"</div>");
   
     
 </script>
