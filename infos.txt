@@ -1,0 +1,13 @@
+Les API utilisés:
+
+1-https://restcountries.eu/rest/v2/region/europe:
+  c'est une API qui contient des informations des pays de l'europe
+2-http://api.wunderground.com/api/50a65432f17cf542/conditions/q/'+pays+'/'+ville+'.json:
+  c'est une API qui contient les informations concernat toutes les villes
+
+les membres du groupe:
+
+-Mamadou Moustapha Barry
+-M'hamed amine saidi
+-Rania 
+-Aichatou Dina Touré
